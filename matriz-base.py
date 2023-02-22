@@ -188,6 +188,13 @@ class Matriz:
     def __matmul__(self, otro):#x@x (producto de dos matrices)
         """Devuele el resultado del producto de esta matriz multiplicada
         por otro."""
+        r = 0
+        if Matriz.es_cuadrada(self) == Matriz.es_cuadrada(otro):
+            for i in range(self.renglones):
+                for j in range(self.columnas):
+                    r += self[i,j] * otro[i,j]
+        return r
+
  
     
     def menor_asociado(self, renglon, columna):
