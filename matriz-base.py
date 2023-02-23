@@ -200,6 +200,11 @@ class Matriz:
     def menor_asociado(self, renglon, columna):
         """Regresa una nueva matriz resultante de eliminar
         el renglon y la columna."""
+        MeAs = Matriz.ceros(self.renglones-1, self.columnas-1)
+        for i in range(renglon, self.renglones):
+            for j in range(columna, self.columnas):
+                MeAs[i, j] = self[i, j]
+        return MeAs
         
     
     def determinante(self):
