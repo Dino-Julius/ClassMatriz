@@ -204,7 +204,17 @@ class Matriz:
     
     def determinante(self):
         """Calcula el valor del determinante de la matriz."""
-        
+        ceroCA = 0
+        ceroCF = 0
+        for i in range(self.renglones):
+            for j in range(self.columnas):
+                if self[i,j] == 0:
+                    ceroCA += 1
+                    ur = j
+            if ceroCA > ceroCF:
+                rowTuse = ur
+                ceroCF = ceroCA
+        return rowTuse
     
     def adjunta(self):
         """Regresa la matriz adjunta."""
