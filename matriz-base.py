@@ -216,12 +216,11 @@ class Matriz:
     
     def es_simetrica(self):
         """Regresa verdadero si la matriz es simetrica."""
-        if Matriz.transpuesta(self) == self:
-            return True
-        
+        return Matriz.transpuesta(self) == self
     
     def es_antisimetrica(self):
         """Regresa verdadero si la matriz es antisimetrica."""
+        return Matriz.transpuesta(-self) == Matriz.transpuesta(self)
         
 
 """
