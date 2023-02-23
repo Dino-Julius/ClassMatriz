@@ -200,15 +200,19 @@ class Matriz:
     def menor_asociado(self, renglon, columna):
         """Regresa una nueva matriz resultante de eliminar
         el renglon y la columna."""
-        # MeAs = Matriz.ceros(self.renglones-1, self.columnas-1)
+        renglon = renglon - 1
+        columna = columna - 1
+        MeAs = Matriz.ceros(self.renglones-1, self.columnas-1)
         for i in range(self.renglones):
             for j in range(self.columnas):
+                # if i != renglon and j != columna:
                 if i == renglon or j == columna:
-                    # MeAs[i-1, j-1] = self[i, j]
-                    # self.pop([j,i])
-                    self[i, j] = 0
-        return self
-        # return MeAs
+                    # MeAs[i,j] =  self[i,j]
+                    self[i,j] = 0
+        for i in range(1,self.renglones):
+            for j in range(1,self.columnas):
+                MeAs[i-1,j-1] = self[i,j]
+        return MeAs
         
     
     def determinante(self):
