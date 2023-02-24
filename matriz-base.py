@@ -205,10 +205,9 @@ class Matriz:
         MeAs = Matriz.ceros(self.renglones-1, self.columnas-1)
         for i in range(self.renglones):
             for j in range(self.columnas):
-                # if i != renglon and j != columna:
                 if i == renglon or j == columna:
-                    # MeAs[i,j] =  self[i,j]
-                    self[i,j] = 0
+                    self[i,j] = []
+                    
         for i in range(1,self.renglones):
             for j in range(1,self.columnas):
                 MeAs[i-1,j-1] = self[i,j]
