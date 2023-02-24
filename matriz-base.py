@@ -201,7 +201,7 @@ class Matriz:
         MeAs = Matriz.ceros(self.renglones-1, self.columnas-1)
         for i in range(self.renglones):
             for j in range(self.columnas):
-                if i != (renglon-1) or j != (columna-1):
+                if i != (renglon-1) and j != (columna-1):
                     MeAs[i-1, j-1] = self[i, j]
         return MeAs
     
@@ -241,7 +241,12 @@ class Matriz:
     
     def adjunta(self):
         """Regresa la matriz adjunta."""
-        
+        adj = Matriz.ceros(self.renglones, self.columnas)
+        for i in range(self.renglones):
+            for j in range(self.columnas):
+                asocio = Matriz.menor_asociado(self,i+1,j+1)
+                adj[i,j] = asocio[0,0]*((-1)**((i+1)+(j+1)))
+        return adj
     
     def inversa(self):
         """Regresa la matriz inversa."""
@@ -249,10 +254,11 @@ class Matriz:
     
     def es_simetrica(self):
         """Regresa verdadero si la matriz es simetrica."""
-        
+        return Matriz.transpuesta(self) == self
     
     def es_antisimetrica(self):
         """Regresa verdadero si la matriz es antisimetrica."""
+        return Matriz.transpuesta(-self) == Matriz.transpuesta(self)
         
 
 """
