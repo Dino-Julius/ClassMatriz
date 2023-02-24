@@ -240,6 +240,12 @@ class Matriz:
     
     def inversa(self):
         """Regresa la matriz inversa."""
+        if self.determinante() == 0:
+            return "Matriz no irrevertible"
+        else:
+            return (Matriz.adjunta(self).transpuesta())/(Matriz.determinante(self))
+
+
         
     
     def es_simetrica(self):
