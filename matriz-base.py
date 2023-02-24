@@ -207,11 +207,36 @@ class Matriz:
     
     def determinante(self):
         """Calcula el valor del determinante de la matriz."""
-        if Matriz.es_cuadrada(self) == False: return "No es cuadrada"
+        if self.renglones == 2 and self.columnas == 2:
+            det = self[0][0] * self[1][1] - self[1][0] * self[0][1]
+            return det
+        '''if Matriz.es_cuadrada(self) == False: return "No es cuadrada"
         r = 3
         for i in range(1,self.renglones+1):
             for j in range(1,self.columnas+1):
                 det = Matriz.menor_asociado(self, i-1, j-1)*(self[i-1, j-1] * ((-1)**r+j))
+        return det'''
+        if Matriz.es_cuadrada(self) == False: return "No es cuadrada"
+        r = 3
+        suma = 0
+        matDet = Matriz.ceros(self.columnas + 2, self. renglones + 2)
+        for i in range(self.renglones):
+            for j in range(self.columnas):
+
+        for i in range(self.renglones):
+            for j in range(self.columnas):
+                if i == j:
+                    uno = self[i,j]
+                dos = uno
+            tres = uno * dos
+            sunma += tres
+                
+
+        for i in range(1,self.renglones+1):
+            for j in range(1,self.columnas+1):
+                a = (self[i-1, j-1] * ((-1)**r+j))
+                # nb = Matriz.menor_asociado(self, i-1, j-1)
+                det += a*b 
         return det
     
     def adjunta(self):
