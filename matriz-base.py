@@ -1,8 +1,10 @@
 # -*- coding: utf-8 -*-
 """
-Created on Fri Feb 17 10:47:19 2023
-
-@author: L03061788
+Tarea 3.1 Operaciones Básicas con Matrices
+Modelación de la ingeniería con matemática computacional (Gpo 104)
+Integrantes: 
+ - Julio Cesar Vivas Medina - A01749879
+ - Ulises Jaramillo Portilla - A01798380
 """
 class Matriz:
     """Instancias de esta clase representan una matriz matemática
@@ -207,37 +209,25 @@ class Matriz:
     
     def determinante(self):
         """Calcula el valor del determinante de la matriz."""
+        det = 0
+        if self.renglones == 1:
+            return self[0, 0]
         if self.renglones == 2 and self.columnas == 2:
             det = self[0][0] * self[1][1] - self[1][0] * self[0][1]
             return det
-        '''if Matriz.es_cuadrada(self) == False: return "No es cuadrada"
-        r = 3
-        for i in range(1,self.renglones+1):
-            for j in range(1,self.columnas+1):
-                det = Matriz.menor_asociado(self, i-1, j-1)*(self[i-1, j-1] * ((-1)**r+j))
-        return det'''
-        if Matriz.es_cuadrada(self) == False: return "No es cuadrada"
-        r = 3
-        suma = 0
-        matDet = Matriz.ceros(self.columnas + 2, self. renglones + 2)
-        for i in range(self.renglones):
-            for j in range(self.columnas):
+        if Matriz.es_cuadrada(self) == False:
+            return "No es cuadrada"
 
-        for i in range(self.renglones):
-            for j in range(self.columnas):
-                if i == j:
-                    uno = self[i,j]
-                dos = uno
-            tres = uno * dos
-            sunma += tres
-                
+        for p in range(self.renglones-1):
+            for r in range(p+1, self.renglones):
+                x = self[r,p]/self[p,p]
+                for c in range(p, self.renglones):
+                    self[r,c] -= self[p,c] * x
 
-        for i in range(1,self.renglones+1):
-            for j in range(1,self.columnas+1):
-                a = (self[i-1, j-1] * ((-1)**r+j))
-                # nb = Matriz.menor_asociado(self, i-1, j-1)
-                det += a*b 
-        return det
+        det = 1
+        for j in range(self.renglones):
+            det *= self[j,j]
+        return int(det)
     
     def adjunta(self):
         """Regresa la matriz adjunta."""
