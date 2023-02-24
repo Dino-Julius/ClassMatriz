@@ -195,8 +195,6 @@ class Matriz:
                     r += self[i,j] * otro[i,j]
         return r
 
- 
-    
     def menor_asociado(self, renglon, columna):
         """Regresa una nueva matriz resultante de eliminar
         el renglon y la columna."""
@@ -209,17 +207,12 @@ class Matriz:
     
     def determinante(self):
         """Calcula el valor del determinante de la matriz."""
-        ceroCA = 0
-        ceroCF = 0
-        for i in range(self.renglones):
-            for j in range(self.columnas):
-                if self[i,j] == 0:
-                    ceroCA += 1
-                    ur = j
-            if ceroCA > ceroCF:
-                rowTuse = ur
-                ceroCF = ceroCA
-        return rowTuse
+        if Matriz.es_cuadrada(self) == False: return "No es cuadrada"
+        r = 3
+        for i in range(1,self.renglones+1):
+            for j in range(1,self.columnas+1):
+                det = Matriz.menor_asociado(self, i-1, j-1)*(self[i-1, j-1] * ((-1)**r+j))
+        return det
     
     def adjunta(self):
         """Regresa la matriz adjunta."""
