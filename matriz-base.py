@@ -212,12 +212,13 @@ class Matriz:
         det = 0
         if self.renglones == 1:
             return self[0, 0]
-        if self.renglones == 2 and self.columnas == 2:
-            det = self[0][0] * self[1][1] - self[1][0] * self[0][1]
-            return det
+        # if self.renglones == 2 and self.columnas == 2:
+        #     det = self[0][0] * self[1][1] - self[1][0] * self[0][1]
+        #     return det
         if Matriz.es_cuadrada(self) == False:
             return "No es cuadrada"
 
+        # realizada por el método de gauss
         for p in range(self.renglones-1):
             for r in range(p+1, self.renglones):
                 x = self[r,p]/self[p,p]
@@ -240,14 +241,12 @@ class Matriz:
     
     def inversa(self):
         """Regresa la matriz inversa."""
-        if self.determinante() == 0:
-            return "Matriz no irrevertible"
-        else:
-            return (Matriz.adjunta(self).transpuesta())/(Matriz.determinante(self))
+        # if Matriz.determinante(self) == 0:
+        #    return "Matriz no irrevertible"
+        # else:
+        adj = Matriz.adjunta(self)
+        return (Matriz.transpuesta(adj))/(Matriz.determinante(self)), 
 
-
-        
-    
     def es_simetrica(self):
         """Regresa verdadero si la matriz es simetrica."""
         return Matriz.transpuesta(self) == self
